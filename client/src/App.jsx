@@ -4,19 +4,12 @@ import Footer from "./components/Footer";
 // import { Route,Routes,BrowserRouter } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ReportPage from "./pages/Report/ReportPage";
-
+import Specialists from "./pages/Specialists/Specialists";
+import Chatbox from './pages/Chatbox/Chatbox'
 const App = () => {
   return (
     <div>
-      {/* <BrowserRouter>
-
-    <Routes>
-      <Route path="/" element={<HomePage/>}/>
-      <Route path="/Report" element={<ReportPage/>}/>
-    </Routes>
-
-      </BrowserRouter> */
-      <HomePage/>}
+      <Chatbox/>  
     </div>
   );
 };
