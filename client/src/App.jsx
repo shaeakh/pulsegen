@@ -7,6 +7,7 @@ import ReportPage from "./pages/Report/ReportPage";
 import Specialists from "./pages/Specialists/Specialists";
 import Chatbox from './pages/Chatbox/Chatbox';
 import Consultation from "./pages/Consultation/ConsultationPage";
+import InfoForm from "./pages/InfoFrom/InfoForm";
 
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
 
     <Routes>
       <Route path="/" element={<HomePage/>}/>
+      <Route path="/infoform" element={<InfoForm/>}/>
       <Route path="/chat" element={<Chatbox/>}/>
       <Route path="/specialists" element={<Specialists/>}/>
       <Route path="/report" element={<ReportPage/>}/>
