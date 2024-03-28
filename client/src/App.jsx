@@ -4,7 +4,11 @@ import Footer from "./components/Footer";
  import { Route,Routes,BrowserRouter } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ReportPage from "./pages/Report/ReportPage";
+import Specialists from "./pages/Specialists/Specialists";
+import Chatbox from './pages/Chatbox/Chatbox';
 import Consultation from "./pages/Consultation/ConsultationPage";
+import InfoForm from "./pages/InfoFrom/InfoForm";
+
 
 const App = () => {
   return (
@@ -13,8 +17,11 @@ const App = () => {
 
     <Routes>
       <Route path="/" element={<HomePage/>}/>
-      <Route path="/Report" element={<ReportPage/>}/>
-      <Route path="/Consult" element={<Consultation/>}/>
+      <Route path="/infoform" element={<InfoForm/>}/>
+      <Route path="/chat" element={<Chatbox/>}/>
+      <Route path="/specialists" element={<Specialists/>}/>
+      <Route path="/report" element={<ReportPage/>}/>
+      <Route path="/consult" element={<Consultation/>}/>
     </Routes>
 
       </BrowserRouter> 
