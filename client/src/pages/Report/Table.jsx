@@ -3,9 +3,9 @@ import React from "react";
 export default function Table() {
   return (
     <div>
-      <div className="overflow-x-auto m-5 border-2 border-black mt-20  ">
+      <div className="overflow-x-auto m-5 mt-20  ">
         {/* hospital name and logo  */}
-        <div className="w-full h-25 border-2 border-black p-5 flex justify-start items-center">
+        <div className="w-full h-25  p-5 flex justify-start items-center">
           <div className="font-bold text-xl">Doc Name ,</div>
           <div className="font-bold text-xl ml-5">Hospital Name,</div>
           <div className="w-max border-2 ml-5">
