@@ -8,12 +8,10 @@ const Home = () => {
         <h1 className="text-5xl font-bold leading-tight">
           Empowering Health Choices for a Vibrant Life Your Trusted..
         </h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam magnam
-          omnis natus accusantium quos. Reprehenderit incidunt expedita
-          molestiae impedit at sequi dolorem iste sit culpa, optio voluptates
-          fugiat vero consequatur?
-        </p>
+        <h3 className="text-2xl">
+          Consulting a healthcare professional,buying medicine,ordering lab tests
+          and improving your health and wellbeing, all can be done 24/7 with Pulsegen.
+        </h3>
 
         <Button title="See Services" />
       </div>
