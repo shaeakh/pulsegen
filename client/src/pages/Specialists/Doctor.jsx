@@ -11,7 +11,7 @@ export default function Doctor(props) {
         </div>
         <div className="flex flex-col p-2">
           <p className="font-bold">{props.name}</p>
-          <p>{props.degree}</p>
+          <p>{props.deg}</p>
           <p className="text-slate-500	mb-2">specialities</p>
           <div className="flex flex-row justify-start">
             <div className="badge badge-primary text-white mr-2">
@@ -24,7 +24,7 @@ export default function Doctor(props) {
           </div>
           <div className="badge badge-primary bg-white border-primary text-primary   mr-2">
             <Badge className="" size="sm">
-            {props.active}
+              {props.active==true ? "true" : "false"  } 
             </Badge>
           </div>
         </div>

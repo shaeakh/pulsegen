@@ -17,6 +17,7 @@ export default {
           "success": "#19392e",
           "warning": "#FD8D14",
           "error": "#ff0000",
+          "gry" : "#61615f"
         },
       },
     ],
