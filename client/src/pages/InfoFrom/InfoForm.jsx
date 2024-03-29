@@ -231,7 +231,7 @@ function InfoForm() {
           Height (cm):
         </label>
         <input
-          className="h-10"
+          className="h-10 border border-primary rounded-lg "
           type="number"
           id="height"
           name="height"
@@ -243,7 +243,7 @@ function InfoForm() {
           Weight (kg):
         </label>
         <input
-          className="h-10"
+          className="h-10 border border-primary rounded-lg "
           type="number"
           id="weight"
           name="weight"
