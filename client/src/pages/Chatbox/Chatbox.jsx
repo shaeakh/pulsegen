@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
-import AIMessage from './AIMessage';
-import UserMessage from './UserMessage';
+import React, { useState } from "react";
+import { CgSandClock } from "react-icons/cg";
+import { IoSendSharp } from "react-icons/io5";
+import { BACKEND_URL } from "../../Const";
+import AIMessage from "./AIMessage";
+import Navbar from "./Navbar";
+import UserMessage from "./UserMessage";
 
 export default function Chatbox() {
   const [input, setInput] = useState("");
@@ -13,21 +17,24 @@ export default function Chatbox() {
     setMessages(updatedMessages);
     console.log("Updated Messages (Before Sending):", updatedMessages);
 
-    const response = await fetch('http://localhost:5000/ai/chat', {
-      method: 'POST',
+    const response = await fetch(`${BACKEND_URL}/ai/chat`, {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(updatedMessages) // Sending the updated messages array
+      body: JSON.stringify(updatedMessages), // Sending the updated messages array
     });
 
     if (response.ok) {
       const data = await response.json();
       const updatedMessagesWithResponse = [...updatedMessages, data];
       setMessages(updatedMessagesWithResponse);
-      console.log("Updated Messages (After Receiving Response):", updatedMessagesWithResponse);
+      console.log(
+        "Updated Messages (After Receiving Response):",
+        updatedMessagesWithResponse
+      );
     } else {
-      console.error('Error fetching data from the server');
+      console.error("Error fetching data from the server");
     }
     setInput("");
     setFetching(false);
@@ -35,12 +42,17 @@ export default function Chatbox() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen">
-        <div className="flex flex-col w-96 h-96 bg-gray-100 p-4 rounded-lg">
+      <div className=" flex flex-col items-center justify-between h-screen">
+        <div className="border-b-4" style={{ width: "100vw" }}>
+          <Navbar />
+        </div>
+        <div className="grid grid-cols-1 content-between w-2/5 h-dvh">
           <div className="flex flex-col h-full overflow-y-auto">
             {messages.map((msg, index) => {
               if (msg.role === "user") {
-                return <UserMessage key={index} msg={msg.content} />;
+                return (
+                  <UserMessage className="" key={index} msg={msg.content} />
+                );
               } else {
                 return <AIMessage key={index} msg={msg.content} />;
               }
@@ -50,21 +62,37 @@ export default function Chatbox() {
             <input
               type="text"
               value={input}
-              onChange={(e) => setInput(e.target.value)}
-              className="flex-1 p-2 rounded-lg"
-            />
-            <button
-              onClick={() => {
-                handelSendMessage();
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handelSendMessage();
+                }
               }}
-              className="p-2 bg-primary text-white rounded-lg"
+              onChange={(e) => setInput(e.target.value)}
+              className="input border-primary border-2 focus:border-2 focus:border-primary focus:outline-none w-full mx-2"
+              placeholder="Enter your diseases and symptoms"
+            />
+            <dir
+              data-key="13"
+              className="btn bg-transparent border-0 mx-2"
+              onClick={handelSendMessage}
+              disabled={fetching}
             >
-              Send
-            </button>
+              {fetching ? (
+                <CgSandClock
+                  className=" color-primary "
+                  style={{ height: "35px", width: "35px" }}
+                />
+              ) : (
+                <IoSendSharp
+                  disabled={fetching}
+                  className=" color-grey "
+                  style={{ height: "35px", width: "35px" }}
+                />
+              )}
+            </dir>
           </div>
         </div>
       </div>
     </>
   );
 }
-

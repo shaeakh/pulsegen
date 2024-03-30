@@ -1,36 +1,175 @@
-import React from 'react'
+import React, { useState } from "react";
+import { Link } from "react-scroll";
+ import Button from "./Button";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+ import Contact from "./Contact";
 
-export default function Navbar() {
-    return (
-        <div>
-            <div className="navbar bg-base-100">
-                <div className="navbar-start">
-                    <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
-                        </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><a>Homepage</a></li>
-                            <li><a>Portfolio</a></li>
-                            <li><a>About</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="navbar-center">
-                    <a className="btn btn-ghost text-xl">daisyUI</a>
-                </div>
-                <div className="navbar-end">
-                    <button className="btn btn-ghost btn-circle">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                    </button>
-                    <button className="btn btn-ghost btn-circle">
-                        <div className="indicator">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-                            <span className="badge badge-xs badge-primary indicator-item"></span>
-                        </div>
-                    </button>
-                </div>
-            </div>
+const Navbar = () => {
+  const [menu, setMenu] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  
+  const handleChange = () => {
+    setMenu(!menu);
+  };
+
+  const closeMenu = () => {
+    setMenu(false);
+  };
+
+  const openForm = () => {
+    setShowForm(true);
+    setMenu(false);
+  };
+
+  const closeForm = () => {
+    setShowForm(false);
+  };
+
+  return (
+    <div className=" fixed w-full z-10 text-white">
+      <div>
+        <div className=" flex flex-row justify-between p-5 md:px-32 px-5 bg-primary shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
+          <div className=" flex flex-row items-center cursor-pointer">
+            <Link to="home" spy={true} smooth={true} duration={500}>
+              <h1 className=" text-2xl font-semibold">Pulsegen</h1>
+            </Link>
+          </div>
+
+          <nav className=" hidden lg:flex flex-row items-center text-lg font-medium gap-8">
+            <Link
+              to="home"
+              spy={true}
+              smooth={true}
+              duration={1500}
+              className=" hover:text-hoverColor transition-all cursor-pointer"
+            >
+              Home
+            </Link>
+            <Link
+              to="about"
+              spy={true}
+              smooth={true}
+              duration={1500}
+              className=" hover:text-hoverColor transition-all cursor-pointer"
+            >
+              About Us
+            </Link>
+            <Link
+              to="services"
+              spy={true}
+              smooth={true}
+              duration={1500}
+              className=" hover:text-hoverColor transition-all cursor-pointer"
+            >
+              Services
+            </Link>
+            <Link
+              to="doctors"
+               spy={true}
+               smooth={true}
+               duration={1500}
+              className=" hover:text-hoverColor transition-all cursor-pointer"
+            >
+              Doctors
+            </Link>
+            <Link
+              to="blog"
+               spy={true}
+              smooth={true}
+              duration={1500}
+              className=" hover:text-hoverColor transition-all cursor-pointer"
+            >
+              Blog
+            </Link>
+          </nav>
+
+          <div className=" hidden lg:flex">
+            <button
+               className="  bg-white text-black px-4 py-2 rounded-md hover:bg-gray-300 transition duration-300 ease-in-out"
+              onClick={openForm}
+            >
+              Contact Us
+            </button>
+          </div>
+
+          {showForm && <Contact closeForm={closeForm} />}
+
+          <div className=" lg:hidden flex items-center">
+            {menu ? (
+              <AiOutlineClose size={28} onClick={handleChange} />
+            ) : (
+              <AiOutlineMenu size={28} onClick={handleChange} />
+            )}
+          </div>
         </div>
-    )
-}
+        <div
+          className={`${
+            menu ? "translate-x-0" : "-translate-x-full"
+          } lg:hidden flex flex-col absolute bg-backgroundColor text-white left-0 top-16 font-semibold text-2xl text-center pt-8 pb-4 gap-8 w-full h-fit transition-transform duration-300`}
+        >
+          <Link
+            to="home"
+            spy={true}
+            smooth={true}
+            duration={500}
+            className=" hover:text-hoverColor transition-all cursor-pointer"
+            onClick={closeMenu}
+          >
+            Home
+          </Link>
+          <Link
+            to="about"
+            spy={true}
+            smooth={true}
+            duration={500}
+            className=" hover:text-hoverColor transition-all cursor-pointer"
+            onClick={closeMenu}
+          >
+            About Us
+          </Link>
+          <Link
+            to="services"
+            spy={true}
+            smooth={true}
+            duration={500}
+            className=" hover:text-hoverColor transition-all cursor-pointer"
+            onClick={closeMenu}
+          >
+            Services
+          </Link>
+          <Link
+            to="doctors"
+            spy={true}
+            smooth={true}
+            duration={500}
+            className=" hover:text-hoverColor transition-all cursor-pointer"
+            onClick={closeMenu}
+          >
+            Doctors
+          </Link>
+          <Link
+            to="blog"
+            spy={true}
+            smooth={true}
+            duration={500}
+            className=" hover:text-hoverColor transition-all cursor-pointer"
+            onClick={closeMenu}
+          >
+            Blog
+          </Link>
+
+          <div className=" lg:hidden">
+            <button
+              className="bg-brightColor text-white px-4 py-2 rounded-md hover:bg-hoverColor transition duration-300 ease-in-out"
+              onClick={openForm}
+            >
+              Contact Us
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;

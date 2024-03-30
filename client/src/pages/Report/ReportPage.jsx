@@ -5,9 +5,9 @@ import Table from './Table'
 import Investigation from './Investigation'
 export default function ReportPage() {
   return (
-    <div>
+    <div className='flex flex-col items-between '>
       <Navbar/>
-      <Table className='m-2'/>
+      <Table className='m-2 '/>
       <Investigation/>
     </div>
   )
