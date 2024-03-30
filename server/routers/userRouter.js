@@ -1,7 +1,11 @@
 const express = require('express');
 const getDoctor = require('../controllers/getDoctor');
 const addDoctor = require('../controllers/addDoctor');
+const addReport = require('../controllers/addReport');
+const getReport = require('../controllers/getReport');
 const userRoute = express.Router();
 userRoute.get('/doctor',getDoctor);
 userRoute.post('/doctor',addDoctor);
+userRoute.post('/report',addReport);
+userRoute.get('/report',getReport);
 module.exports = userRoute;

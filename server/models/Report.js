@@ -16,6 +16,10 @@ const reportSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    contact: {
+        type: Number,
+        required: true
+    },
     c_c: {
         type: String,
         required: true
