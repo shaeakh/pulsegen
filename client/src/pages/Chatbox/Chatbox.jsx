@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import AIMessage from "./AIMessage";
-import UserMessage from "./UserMessage";
-import Navbar from "./Navbar";
-import { IoSendSharp } from "react-icons/io5";
 import { CgSandClock } from "react-icons/cg";
+import { IoSendSharp } from "react-icons/io5";
+import { BACKEND_URL } from "../../Const";
+import AIMessage from "./AIMessage";
+import Navbar from "./Navbar";
+import UserMessage from "./UserMessage";
 
 export default function Chatbox() {
   const [input, setInput] = useState("");
@@ -16,7 +17,7 @@ export default function Chatbox() {
     setMessages(updatedMessages);
     console.log("Updated Messages (Before Sending):", updatedMessages);
 
-    const response = await fetch("http://localhost:5000/ai/chat", {
+    const response = await fetch(`${BACKEND_URL}/ai/chat`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -49,7 +50,9 @@ export default function Chatbox() {
           <div className="flex flex-col h-full overflow-y-auto">
             {messages.map((msg, index) => {
               if (msg.role === "user") {
-                return <UserMessage className="" key={index} msg={msg.content} />;
+                return (
+                  <UserMessage className="" key={index} msg={msg.content} />
+                );
               } else {
                 return <AIMessage key={index} msg={msg.content} />;
               }
@@ -59,13 +62,33 @@ export default function Chatbox() {
             <input
               type="text"
               value={input}
-              onKeyDown={(e) => { if (e.key==='Enter') { handelSendMessage(); } }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handelSendMessage();
+                }
+              }}
               onChange={(e) => setInput(e.target.value)}
               className="input border-primary border-2 focus:border-2 focus:border-primary focus:outline-none w-full mx-2"
               placeholder="Enter your diseases and symptoms"
             />
-            <dir data-key="13" className='btn bg-transparent border-0 mx-2' onClick={handelSendMessage} disabled={fetching}>
-                  {fetching ? <CgSandClock  className=' color-primary ' style={{ height: '35px', width: '35px' }} />  : <IoSendSharp disabled={fetching} className=' color-grey ' style={{ height: '35px', width: '35px' }} />}
+            <dir
+              data-key="13"
+              className="btn bg-transparent border-0 mx-2"
+              onClick={handelSendMessage}
+              disabled={fetching}
+            >
+              {fetching ? (
+                <CgSandClock
+                  className=" color-primary "
+                  style={{ height: "35px", width: "35px" }}
+                />
+              ) : (
+                <IoSendSharp
+                  disabled={fetching}
+                  className=" color-grey "
+                  style={{ height: "35px", width: "35px" }}
+                />
+              )}
             </dir>
           </div>
         </div>
