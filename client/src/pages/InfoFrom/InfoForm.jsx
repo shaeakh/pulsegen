@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./Infoform.css";
-
+import { useNavigate } from "react-router-dom";
 function InfoForm() {
+  const navigate =  useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -68,6 +69,7 @@ function InfoForm() {
     // You can perform further validation or send the form data to a server here
 
     alert(`Appointment booked for ${formData.name} on ${formattedDateTime}`);
+    navigate('/chat')
     // Reset form fields
     setFormData({
       name: "",

@@ -1,9 +1,10 @@
 import React from "react";
 import { Badge } from "flowbite-react";
-
+import { Link } from "react-router-dom";
 export default function Doctor(props) {
     
   return (
+    <Link to='/infoform'>
     <div className="w-full border-2 border-grey hover:shadow-md  rounded-lg flex flex-row bg-white mb-2">
       <div className="flex flex-row w-5/12 ">
         <div className="w-1/3    flex p-2">
@@ -53,5 +54,6 @@ export default function Doctor(props) {
         <div className="text-slate-500">Per Consultation</div>
       </div>
     </div>
+    </Link>
   );
 }
