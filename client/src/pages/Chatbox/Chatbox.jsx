@@ -10,6 +10,7 @@ export default function Chatbox() {
   const [input, setInput] = useState("");
   const [fetching, setFetching] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [progress, setProgress] = useState(0);
 
   const handelSendMessage = async () => {
     setFetching(true);
@@ -27,8 +28,14 @@ export default function Chatbox() {
 
     if (response.ok) {
       const data = await response.json();
-      const updatedMessagesWithResponse = [...updatedMessages, data];
+      console.log("Data Type of Response:", typeof data);
+      const responseMessage = {
+        role: data.role,
+        content: data.content,
+      };
+      const updatedMessagesWithResponse = [...updatedMessages, responseMessage];
       setMessages(updatedMessagesWithResponse);
+      setProgress(data.progress);
       console.log(
         "Updated Messages (After Receiving Response):",
         updatedMessagesWithResponse
@@ -46,6 +53,7 @@ export default function Chatbox() {
         <div className="border-b-4" style={{ width: "100vw" }}>
           <Navbar />
         </div>
+        <div>Progress: {progress}% Completed</div>
         <div className="grid grid-cols-1 content-between w-2/5 h-dvh">
           <div className="flex flex-col h-full overflow-y-auto">
             {messages.map((msg, index) => {
