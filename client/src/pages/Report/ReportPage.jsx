@@ -5,7 +5,7 @@ import Investigation from "./Investigation";
 
 
 export default function ReportPage(props) {
-  const pdfref = useRef();
+ 
   const P_details = {
     doc_name: "Kunan Dalal",
     date: Date("2024-03-30"),
@@ -70,7 +70,7 @@ export default function ReportPage(props) {
       report_sl={P_details.report_sl}
         p_ill={P_details.present_ill}
         past_history={P_details.past_history}
-        dwnload = {downloadPDF}
+        
       />
       
     </div>
