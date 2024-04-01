@@ -1,18 +1,18 @@
 import React from "react";
 import Button from "../layouts/Button";
-import { RiMicroscopeLine } from "react-icons/ri";
+import { RiRobotFill } from "react-icons/ri";
 import ServicesCard from "../layouts/ServicesCard";
 import { MdHealthAndSafety } from "react-icons/md";
-import { FaHeartbeat } from "react-icons/fa";
+import { FaUserDoctor } from "react-icons/fa6";
 
 const Services = () => {
   const icon1 = (
-    <RiMicroscopeLine size={35} className=" text-backgroundColor" />
+    <RiRobotFill size={35} className=" text-backgroundColor" />
   );
   const icon2 = (
     <MdHealthAndSafety size={35} className=" text-backgroundColor" />
   );
-  const icon3 = <FaHeartbeat size={35} className=" text-backgroundColor" />;
+  const icon3 = <FaUserDoctor size={35} className=" text-backgroundColor" />;
 
   return (
     <div className=" min-h-screen flex flex-col justify-center lg:px-32 px-5 pt-24 lg:pt-16">
@@ -31,17 +31,19 @@ const Services = () => {
         </div>
       </div>
       <div className=" flex flex-col lg:flex-row gap-5 pt-14">
-        <ServicesCard icon={icon1} title="Lab Test"
-          description=" Our streamlined process offers quick and precise results, enabling patients to take proactive steps towards managing their health. From detecting early signs of illness to monitoring treatment effectiveness, 
-          our tests provide valuable insights to empower informed decisions and promote overall well-being." />
+        <ServicesCard icon={icon1} title="AI Test"
+          description=" Experience streamlined healthcare efficiency with AI-driven test reporting at our hospital. Harnessing the power of artificial intelligence, receive accurate and prompt test results, 
+                        ensuring swift diagnosis and treatment for patients.
+                        Say goodbye to waiting times and hello to precision and speed in healthcare management." />
 
-        <ServicesCard icon={icon2} title="Health Check" 
-          description="From thorough health assessments to personalized treatment plans, we keep you informed every step of the way. With regular updates and transparent communication,
-           we empower you to actively participate in managing your health.Trust us to provide attentive care , guiding you towards a healthier, happier life."/>
-
-        <ServicesCard icon={icon3} title="Heart Health"
-          description="we prioritize your heart health with advanced diagnostics and personalized care. Our comprehensive approach includes state-of-the-art tests to assess your heart's condition accurately. With timely updates and expert guidance,
-           we ensure you stay informed about your heart health every step of the way. " />
+        <ServicesCard icon={icon2} title="Instant primary diagnostic report" 
+          description=" Instant Primary Diagnostic Report is an efficient tool designed to provide you with immediate insights into your health condition. 
+                       It compiles vital information such as your current symptoms, medical history in a concise format. Our aim is to provide you accurate diagnostics,
+                       ensuring you receive the best possible treatment."/>
+        <ServicesCard icon={icon3} title="Doctor's consultation"
+          description=" Our doctors are committed to provide the best service by spending enough time required for the consultation.
+                         We constantly improve our service from the rating and feedback provided by patients.
+                         Experience enhanced doctor consultations,ensuring comprehensive analysis and efficient treatment plans tailored to individual patient needs. " />
       </div>
     </div>
   );

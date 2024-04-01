@@ -281,7 +281,7 @@ const Navbar = () => {
         <div
           className={`${
             menu ? "translate-x-0" : "-translate-x-full"
-          } lg:hidden flex flex-col absolute bg-backgroundColor text-white left-0 top-16 font-semibold text-2xl text-center pt-8 pb-4 gap-8 w-full h-fit transition-transform duration-300`}
+          } lg:hidden flex flex-col absolute bg-primary text-white left-0 top-16 font-semibold text-2xl text-center pt-8 pb-4 gap-8 w-full h-fit transition-transform duration-300`}
         >
           <ScrollLink
             to="home"
