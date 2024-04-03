@@ -5,8 +5,9 @@ import { BACKEND_URL } from "../../Const";
 import AIMessage from "./AIMessage";
 import Navbar from "./Navbar";
 import UserMessage from "./UserMessage";
-
+import { useNavigate } from "react-router-dom";
 export default function Chatbox() {
+  const navigate =  useNavigate();
   const [input, setInput] = useState("");
   const [fetching, setFetching] = useState(false);
   const [messages, setMessages] = useState([]);
@@ -46,26 +47,33 @@ export default function Chatbox() {
     setInput("");
     setFetching(false);
   };
-
+  const handleGenerateReport = () => {
+    navigate('/report')
+  };
   return (
+
     <>
-      <div className=" flex flex-col items-center justify-between h-screen">
-        <div className="border-b-4" style={{ width: "100vw" }}>
-          <Navbar />
+    <div className="flex flex-col items-center justify-between h-screen">
+      <div className="border-b-4" style={{ width: "100vw" }}>
+        <Navbar />
+      </div>
+      <div>Progress: {progress}% Completed</div>
+      {progress === 100 && (
+        <button className="btn btn-outline btn-success" onClick={handleGenerateReport}>Generate Report</button>
+      )}
+      <div className="grid grid-cols-1 content-between w-2/5 h-dvh">
+        <div className="flex flex-col h-full overflow-y-auto">
+          {messages.map((msg, index) => {
+            if (msg.role === "user") {
+              return (
+                <UserMessage className="" key={index} msg={msg.content} />
+              );
+            } else {
+              return <AIMessage key={index} msg={msg.content} />;
+            }
+          })}
         </div>
-        <div>Progress: {progress}% Completed</div>
-        <div className="grid grid-cols-1 content-between w-2/5 h-dvh">
-          <div className="flex flex-col h-full overflow-y-auto">
-            {messages.map((msg, index) => {
-              if (msg.role === "user") {
-                return (
-                  <UserMessage className="" key={index} msg={msg.content} />
-                );
-              } else {
-                return <AIMessage key={index} msg={msg.content} />;
-              }
-            })}
-          </div>
+        {progress !== 100 && (
           <div className="flex items-center">
             <input
               type="text"
@@ -99,8 +107,9 @@ export default function Chatbox() {
               )}
             </dir>
           </div>
-        </div>
+        )}
       </div>
-    </>
+    </div>
+  </>
   );
 }
