@@ -6,8 +6,8 @@ const patientChat = async (req, res) => {
     let messages = [];
     messages.push({
         role: 'system',
-        content: 'You are a helpful medical assistant who talks with patients and generate reports based on the information recieved from the conversetion. Remember to send response always in json format. Like this: {"message":"Hello.", "progress":12}, here message is the response and progress is the progress of the conversation.'
-        // content: process.env.CHAT_SECRET_SAUCE
+        // content: 'You are a helpful medical assistant who talks with patients and generate reports based on the information recieved from the conversetion. Remember to send response always in json format. Like this: {"message":"Hello.", "progress":12}, here message is the response and progress is the progress of the conversation.'
+        content: process.env.CHAT_SECRET_SAUCE
     });
     if (req.body && Array.isArray(req.body)) {
         messages = [...messages, ...req.body];
