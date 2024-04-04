@@ -5,14 +5,17 @@ import { TbGenderBigender } from "react-icons/tb";
 import ReactMarkdown from "react-markdown";
 import QRCode from "react-qr-code";
 import icon from "../../assets/icon_light.png";
+import { useSelector } from 'react-redux';
+
 
 const UserReport = () => {
+  const user = useSelector(state => state.user);
   const reportID = 65416163516;
   const qr = `https://pulsegen.xyz/report/${reportID}`;
-  const name = "Patient's name";
-  const age = 28;
-  const gender = "Patient's gender";
-  const address = "Patient's address";
+  const name = `${user.name}`;
+  const age = `${user.age}`;
+  const gender = `${user.gender}`;
+  const address = `${user.address}`;
   const date = "2024-04-03";
   const number = "01234567891";
   const email = "N/A";

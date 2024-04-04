@@ -5,7 +5,8 @@ const initialState = {
     name: '',
     age: '',
     gender: '',
-    bloodGroup:''
+    bloodGroup:'',
+    address:''
    
   }
 };
