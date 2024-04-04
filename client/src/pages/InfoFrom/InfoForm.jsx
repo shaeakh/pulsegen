@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Infoform.css";
-
+import { useDispatch } from 'react-redux';
 function InfoForm() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const currentDate = new Date();
   const date = new Date(
@@ -55,6 +56,14 @@ function InfoForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const data = new FormData(event.target);
+    dispatch({ type: 'UPDATE_USER', payload: {
+      name: data.get('name'),
+      age: data.get('age'),
+      gender: data.get('gender'),
+      bloodGroup: data.get('bloodGroup'),
+     
+    }});
     navigate("/chat");
   };
 

@@ -6,7 +6,9 @@ import AIMessage from "./AIMessage";
 import Navbar from "./Navbar";
 import UserMessage from "./UserMessage";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
 export default function Chatbox() {
+  const user = useSelector(state => state.user);
   const navigate =  useNavigate();
   const [input, setInput] = useState("");
   const [fetching, setFetching] = useState(false);
@@ -57,6 +59,11 @@ export default function Chatbox() {
       <div className="border-b-4" style={{ width: "100vw" }}>
         <Navbar />
       </div>
+      <p>Name: {user.name}</p>
+      <p>Age: {user.age}</p>
+      <p>Gender: {user.gender}</p>
+      <p>Blood Group: {user.bloodGroup}</p>
+      
       <div>Progress: {progress}% Completed</div>
       {progress === 100 && (
         <button className="btn btn-outline btn-success" onClick={handleGenerateReport}>Generate Report</button>
