@@ -1,30 +1,27 @@
 import React from "react";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
- import { Route,Routes,BrowserRouter } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import ReportPage from "./pages/Report/ReportPage";
-import Specialists from "./pages/Specialists/Specialists";
-import Chatbox from './pages/Chatbox/Chatbox';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Chatbox from "./pages/Chatbox/Chatbox";
 import Consultation from "./pages/Consultation/ConsultationPage";
+import HomePage from "./pages/HomePage";
 import InfoForm from "./pages/InfoFrom/InfoForm";
-
+import UserReport from "./pages/Report/UserReport";
+import Specialists from "./pages/Specialists/Specialists";
 
 const App = () => {
   return (
     <div>
-      { <BrowserRouter>
-
-    <Routes>
-      <Route path="/" element={<HomePage/>}/>
-      <Route path="/infoform" element={<InfoForm/>}/>
-      <Route path="/chat" element={<Chatbox/>}/>
-      <Route path="/specialists" element={<Specialists/>}/>
-      <Route path="/report" element={<ReportPage/>}/>
-      <Route path="/consult" element={<Consultation/>}/>
-    </Routes>
-
-      </BrowserRouter> 
+      {
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/infoform" element={<InfoForm />} />
+            <Route path="/chat" element={<Chatbox />} />
+            <Route path="/specialists" element={<Specialists />} />
+            {/* <Route path="/report" element={<ReportPage />} /> */}
+            <Route path="/report" element={<UserReport />} />
+            <Route path="/consult" element={<Consultation />} />
+          </Routes>
+        </BrowserRouter>
       }
     </div>
   );

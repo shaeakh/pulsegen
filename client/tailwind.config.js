@@ -23,7 +23,14 @@ export default {
     ],
   },
   theme: {
-    extend: {},
+    extend: {
+      width:{
+        report_icon: "58px",
+      }
+    }
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require("daisyui")
+  ],
 }
