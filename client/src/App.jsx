@@ -17,8 +17,7 @@ const App = () => {
             <Route path="/infoform" element={<InfoForm />} />
             <Route path="/chat" element={<Chatbox />} />
             <Route path="/specialists" element={<Specialists />} />
-            {/* <Route path="/report" element={<ReportPage />} /> */}
-            <Route path="/report" element={<UserReport />} />
+            <Route path="/report/:id" element={<UserReport />} />
             <Route path="/consult" element={<Consultation />} />
           </Routes>
         </BrowserRouter>

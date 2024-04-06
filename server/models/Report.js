@@ -16,7 +16,7 @@ const reportSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    contact: {
+    phone: {
         type: Number,
         required: true
     },
@@ -24,7 +24,7 @@ const reportSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    illness_summary: {
+    summary: {
         type: String,
         required: true
     },
@@ -33,7 +33,15 @@ const reportSchema = mongoose.Schema({
         required: true
     },
     date: {
-        type: Date,
+        type: String,
+        required: true
+    },
+    height: {
+        type: Number,
+        required: true
+    },
+    weight: {
+        type: Number,
         required: true
     }
 });

@@ -7,5 +7,5 @@ const userRoute = express.Router();
 userRoute.get('/doctor',getDoctor);
 userRoute.post('/doctor',addDoctor);
 userRoute.post('/report',addReport);
-userRoute.get('/report',getReport);
+userRoute.get('/report/:id',getReport);
 module.exports = userRoute;

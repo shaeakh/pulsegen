@@ -1,27 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaLocationDot } from "react-icons/fa6";
-import { SiGmail } from "react-icons/si";
 import { TbGenderBigender } from "react-icons/tb";
 import ReactMarkdown from "react-markdown";
 import QRCode from "react-qr-code";
+import { useParams } from "react-router-dom";
+import { BACKEND_URL } from "../../Const";
 import icon from "../../assets/icon_light.png";
-import { useSelector } from 'react-redux';
-
 
 const UserReport = () => {
-  const user = useSelector(state => state.user);
-  const reportID = 65416163516;
-  const qr = `https://pulsegen.xyz/report/${reportID}`;
-  const name = `${user.name}`;
-  const age = `${user.age}`;
-  const gender = `${user.gender}`;
-  const address = `${user.address}`;
-  const date = "2024-04-03";
-  const number = "01234567891";
-  const email = "N/A";
-  const c_c = ` * **C/C** - 1\n  * C/C - 2\n  * C/C - 3\n  * C/C - 4\n * da `;
-  const history = ` * **History** - 1\n  * History - 2\n  * __History__ - 3\n  * History - 4 `;
-  const summary = ` * **Summary** - 1\n  * Summary - 2\n  * Summary - 3\n  * Summary - 4 `;
+  const { id } = useParams();
+  console.log("id", id);
+  const [reportData, setReportData] = useState(null);
+  useEffect(() => {
+    const fetchReport = async () => {
+      try {
+        const response = await fetch(`${BACKEND_URL}/user/report/${id}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch report");
+        }
+        const data = await response.json();
+        setReportData(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchReport();
+  }, [id]);
+  if (!reportData) {
+    return <div>Loading...</div>;
+  }
+
+  const {
+    name,
+    age,
+    gender,
+    address,
+    phone,
+    c_c,
+    history,
+    summary,
+    date,
+    height,
+    weight,
+  } = reportData;
+  const qr = `https://pulsegen.xyz/report/${id}`;
 
   return (
     <div className=" flex flex-col items-center">
@@ -59,7 +82,7 @@ const UserReport = () => {
           </p>
           <p>
             <strong className=" text-primary">Report ID: </strong>
-            {reportID}
+            {id} {/* Correct variable name */}
           </p>
         </div>
         {/* patient info */}
@@ -77,15 +100,11 @@ const UserReport = () => {
           <div className="flex flex-col items-end">
             <p className="flex items-center">
               +88
-              {number}
+              {phone}
             </p>
             <p className="flex items-center">
               {address}
               <FaLocationDot className="ml-1" />
-            </p>
-            <p className="flex items-center">
-              {email}
-              <SiGmail className="ml-1" />
             </p>
           </div>
         </div>

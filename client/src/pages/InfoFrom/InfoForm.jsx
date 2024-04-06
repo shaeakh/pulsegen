@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./Infoform.css";
-import { useDispatch } from 'react-redux';
 function InfoForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -57,14 +57,16 @@ function InfoForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
-    dispatch({ type: 'UPDATE_USER', payload: {
-      name: data.get('name'),
-      age: data.get('age'),
-      gender: data.get('gender'),
-      bloodGroup: data.get('bloodGroup'),
-      address:data.get('address')
-     
-    }});
+    dispatch({
+      type: "UPDATE_USER",
+      payload: {
+        name: data.get("name"),
+        age: data.get("age"),
+        gender: data.get("gender"),
+        bloodGroup: data.get("bloodGroup"),
+        address: data.get("address"),
+      },
+    });
     navigate("/chat");
   };
 
@@ -103,7 +105,7 @@ function InfoForm() {
           <select
             id="gender"
             name="gender"
-            className="w-full h-10 bg-transparent	"
+            className="w-full h-10 bg-transparent  "
             value={formData.gender}
             onChange={handleChange}
             required
@@ -118,7 +120,7 @@ function InfoForm() {
         </label>
         <div className="w-2/5  border border-primary rounded-l-lg rounded-lg flex justify-center items-center">
           <select
-            className="w-full h-10 bg-transparent	"
+            className="w-full h-10 bg-transparent  "
             id="bloodGroup"
             name="bloodGroup"
             value={formData.bloodGroup}
@@ -159,7 +161,7 @@ function InfoForm() {
           required
         />
         <label className="font-bold text-primary" htmlFor="height">
-          Height (cm):
+          Height (cm): <span className="text-red-600">*</span>
         </label>
         <input
           className="p-3 h-10 border border-primary rounded-lg "
@@ -168,9 +170,10 @@ function InfoForm() {
           name="height"
           value={formData.height}
           onChange={handleChange}
+          required
         />
         <label className="font-bold text-primary" htmlFor="weight">
-          Weight (kg):
+          Weight (kg):<span className="text-red-600">*</span>
         </label>
         <input
           className="p-3 h-10 border border-primary rounded-lg "
@@ -179,128 +182,10 @@ function InfoForm() {
           name="weight"
           value={formData.weight}
           onChange={handleChange}
+          required
         />
 
         {/* New fields */}
-        <h3 className="font-bold text-primary my-2">
-          Have you ever had (please check all that apply):
-        </h3>
-        <div className="checkbox-container">
-          <div className="left-checkboxes">
-            <div>
-              <input
-                className="mr-2 checkbox checkbox-primary checkbox-xs"
-                type="checkbox"
-                id="anemia"
-                name="anemia"
-                checked={formData.diseases.anemia}
-                onChange={handleChange}
-              />
-              <label htmlFor="anemia">Anemia</label>
-            </div>
-            <div>
-              <input
-                className="mr-2 checkbox checkbox-primary checkbox-xs"
-                type="checkbox"
-                id="emotionalDisorder"
-                name="emotionalDisorder"
-                checked={formData.diseases.emotionalDisorder}
-                onChange={handleChange}
-              />
-              <label htmlFor="emotionalDisorder">Emotional Disorder</label>
-            </div>
-            <div>
-              <input
-                className="mr-2 checkbox checkbox-primary checkbox-xs"
-                type="checkbox"
-                id="heartDisease"
-                name="heartDisease"
-                checked={formData.diseases.heartDisease}
-                onChange={handleChange}
-              />
-              <label htmlFor="heartDisease">Heart Disease</label>
-            </div>
-            <div>
-              <input
-                className="mr-2 checkbox checkbox-primary checkbox-xs"
-                type="checkbox"
-                id="kidneyDisease"
-                name="kidneyDisease"
-                checked={formData.diseases.kidneyDisease}
-                onChange={handleChange}
-              />
-              <label htmlFor="kidneyDisease">Kidney Disease</label>
-            </div>
-            <div>
-              <input
-                className="mr-2 checkbox checkbox-primary checkbox-xs"
-                type="checkbox"
-                id="asthma"
-                name="asthma"
-                checked={formData.diseases.asthma}
-                onChange={handleChange}
-              />
-              <label htmlFor="asthma">Asthma</label>
-            </div>
-          </div>
-          <div className="right-checkboxes">
-            <div>
-              <input
-                className="mr-2 checkbox checkbox-primary checkbox-xs"
-                type="checkbox"
-                id="cancer"
-                name="cancer"
-                checked={formData.diseases.cancer}
-                onChange={handleChange}
-              />
-              <label htmlFor="cancer">Cancer</label>
-            </div>
-            <div>
-              <input
-                className="mr-2 checkbox checkbox-primary checkbox-xs"
-                type="checkbox"
-                id="diabetes"
-                name="diabetes"
-                checked={formData.diseases.diabetes}
-                onChange={handleChange}
-              />
-              <label htmlFor="diabetes">Diabetes</label>
-            </div>
-            <div>
-              <input
-                className="mr-2 checkbox checkbox-primary checkbox-xs"
-                type="checkbox"
-                id="highBloodPressure"
-                name="highBloodPressure"
-                checked={formData.diseases.highBloodPressure}
-                onChange={handleChange}
-              />
-              <label htmlFor="highBloodPressure">High Blood Pressure</label>
-            </div>
-            <div>
-              <input
-                className="mr-2 checkbox checkbox-primary checkbox-xs"
-                type="checkbox"
-                id="hepatitis"
-                name="hepatitis"
-                checked={formData.diseases.hepatitis}
-                onChange={handleChange}
-              />
-              <label htmlFor="hepatitis">Hepatitis</label>
-            </div>
-            <div>
-              <input
-                className="mr-2 checkbox checkbox-primary checkbox-xs"
-                type="checkbox"
-                id="tuberculosis"
-                name="tuberculosis"
-                checked={formData.diseases.tuberculosis}
-                onChange={handleChange}
-              />
-              <label htmlFor="tuberculosis">Tuberculosis</label>
-            </div>
-          </div>
-        </div>
 
         <div>
           <button className="btn text-white font-bold my-2 h-10" type="submit">
