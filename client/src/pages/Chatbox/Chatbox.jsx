@@ -89,23 +89,25 @@ export default function Chatbox() {
   };
 
   const handleGenerateReport = async () => {
+    const reqBody = {
+      chat: messages,
+      name: user.name,
+      age: user.age,
+      gender: user.gender,
+      bloodGroup: user.bloodGroup,
+      height: user.height,
+      weight: user.weight,
+      phone: user.phone,
+      address: user.address,
+    };
     setGeneratingReport(true);
+    console.log("Request Body for Generating Report:", reqBody);
     const response = await fetch("http://localhost:5000/ai/report", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        chat: messages,
-        name: user.name,
-        age: user.age,
-        gender: user.gender,
-        bloodGroup: user.bloodGroup,
-        height: user.height,
-        weight: user.weight,
-        phone: user.phone,
-        address: user.address,
-      }),
+      body: JSON.stringify(reqBody),
     });
     if (response.ok) {
       const data = await response.json();
