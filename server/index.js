@@ -15,6 +15,9 @@ const DBURL = process.env.DBURL;
 app.use(express.json());
 app.use('/ai', aiRouter);
 app.use('/user', userRoute);
+app.get('/', (req, res) => {
+    res.send('Welcome to PulseGen');
+});
 
 mongoose.connect(DBURL)
     .then(() => {
